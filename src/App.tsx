@@ -1,7 +1,5 @@
 import ListGroup from './components/ListGroup'
 
-
-
 function App() {
 
   let items = [
@@ -12,9 +10,10 @@ function App() {
     'Swansea'
   ];
 
-  const handleSelectItem = item;
+    
 
-  return <div><ListGroup items={items} heading='Cities' onSelectItem={}/></div>
+
+  return <div><ListGroup items={items} heading='Cities' /></div>
 }
 
 export default App;

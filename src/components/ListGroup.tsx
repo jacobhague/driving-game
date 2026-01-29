@@ -3,7 +3,6 @@ import { useState } from "react";
 interface ListGroupProps {
   items: string[];
   heading: string;
-  inSelectItem: (item: string) => void;
 }
 
 function ListGroup({ items, heading }: ListGroupProps) {
