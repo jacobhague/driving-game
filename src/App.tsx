@@ -1,4 +1,5 @@
 import ListGroup from './components/ListGroup'
+import Button from './components/Button'
 
 function App() {
 
@@ -15,7 +16,11 @@ function App() {
     console.log(item);
   }
 
-  return <div><ListGroup items={items} heading='Cities' onSelectItem={handleSelectItem} /></div>
+  return (
+    <div>
+      <Button />
+    </div>
+  )
 }
 
 export default App;
