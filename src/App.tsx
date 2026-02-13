@@ -1,24 +1,12 @@
-import ListGroup from './components/ListGroup'
-import Button from './components/Button'
+
+import Square from './components/Square';
 
 function App() {
 
-  let items = [
-    'Cardiff',
-    'Gloucester',
-    'Birmingham',
-    'Worcester',
-    'Swansea'
-  ];
-
-    
-  const handleSelectItem = (item: string) => {
-    console.log(item);
-  }
 
   return (
     <div>
-      <Button />
+      <Square />
     </div>
   )
 }
