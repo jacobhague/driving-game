@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import carImage from './assets/car.jpg'
 
 let angleRad = 0.0;
+let trueX = 0.0;
+let trueY = 0.0;
 let speed = 0.0;
- const turningRadius = 100.0;
+const turningRadius = 100.0;
 const acceleration = 0.1;
 const maxSpeed = 7.0;
 
@@ -49,13 +51,15 @@ function Car() {
 
       if (pressedKeys.has('w') && speed < maxSpeed) {
         
-        speed += acceleration;
+        if (speed > 0) speed += acceleration;
+        else speed += acceleration * 2;
 
       }
 
       if (pressedKeys.has('s') && speed > maxSpeed * -1) {
         
-        speed -= acceleration;
+        if (speed < 0) speed -= acceleration;
+        else speed -= acceleration * 2;
 
       }
 
@@ -88,8 +92,8 @@ function Car() {
       if (speed > 0) {
         
 
-        newY -= Math.ceil(speed * Math.cos(angleRad));
-        newX += Math.ceil(speed * Math.sin(angleRad));
+        trueY -= speed * Math.cos(angleRad);
+        trueX += speed * Math.sin(angleRad);
 
         if(pressedKeys.has('a')) angleRad -= speed / turningRadius;
         if(pressedKeys.has('d')) angleRad += speed / turningRadius;
@@ -98,11 +102,11 @@ function Car() {
 
       if (speed < 0) {
 
-        newY -= Math.ceil(speed * Math.cos(angleRad));
-        newX += Math.ceil(speed * Math.sin(angleRad));
+        trueY -= speed * Math.cos(angleRad);
+        trueX += speed * Math.sin(angleRad);
 
-        if(pressedKeys.has('a')) angleRad += speed / turningRadius;
-        if(pressedKeys.has('d')) angleRad -= speed / turningRadius;
+        if(pressedKeys.has('a')) angleRad -= speed / turningRadius;
+        if(pressedKeys.has('d')) angleRad += speed / turningRadius;
 
       }
 
@@ -110,7 +114,10 @@ function Car() {
       if (angleRad > Math.PI) angleRad = Math.PI*-2 + angleRad;
       if (angleRad < Math.PI*-1) angleRad = Math.PI*2 + angleRad;
 
-      newAngle = angleRad / Math.PI * 180;
+      newX = Math.floor(trueX);
+      newY = Math.floor(trueY);
+      
+      newAngle = Math.round(angleRad / Math.PI * 180);
 
   
 
@@ -134,7 +141,7 @@ function Car() {
         height: '180px',
       }}
     >
-      <img src={carImage} alt="Description of the image" />
+      <img src={carImage} alt="A car" />
 
     </div>
   );
